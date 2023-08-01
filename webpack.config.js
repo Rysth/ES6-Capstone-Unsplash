@@ -15,16 +15,8 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        type: 'asset',
         test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'images/', // The folder where images will be copied in the output directory
-            },
-          },
-        ],
       },
     ],
   },

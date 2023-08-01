@@ -27,6 +27,18 @@ body {
   margin: 0;
 }
 
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--CL-neutral-black);
+}
+
 /* Container */
 .container {
   width: min(95%, 1280px);

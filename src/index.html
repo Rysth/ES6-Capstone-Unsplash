@@ -11,15 +11,28 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon" />
+    <link
+      id="favicon"
+      rel="shortcut icon"
+      href="./assets/images/logo.png"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header class="header">
-      <div class="container">
-        <img src="./assets/images/logo.png" alt="Camera picture logo" />
-        <ul class="header-list">
+      <div class="container header-flex header-flex-between">
+        <div class="header-flex">
+          <img
+            class="header-logo"
+            id="header-logo"
+            src="./assets/images/logo.png"
+            alt="Camera picture logo"
+          />
+          <h1 class="header-title">InspireScapes</h1>
+        </div>
+        <ul class="header-list header-flex">
           <li class="header-item">
-            <a href="#" class="header-link">John</a>
+            <a href="./index.html" class="header-link">Home</a>
           </li>
         </ul>
       </div>
