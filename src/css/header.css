@@ -34,8 +34,17 @@
   transform: translateY(-0.35em);
 }
 
+.header-item:hover .header-link {
+  text-decoration: none;
+}
+
 .header-link {
   color: var(--CL-primary-blue-light);
+}
+
+.header-link.active {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {
