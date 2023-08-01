@@ -4,10 +4,8 @@
   --CL-primary-blue-light: #386bf3;
   --CL-primary-blue-dark: #f4f7fc;
   --CL-primary-blue-gray: #ebeef0;
-
-  --CL-neutral-white: #ffffff;
-  --CL-neutral-black: #000000;
-
+  --CL-neutral-white: #fff;
+  --CL-neutral-black: #000;
   --FF-poppins: 'Poppins', sans-serif;
 }
 
@@ -41,7 +39,8 @@ a {
 
 /* Container */
 .container {
-  width: min(95%, 1280px);
+  max-width: 1280px;
+  width: 95%;
   margin: 0 auto;
 }
 
