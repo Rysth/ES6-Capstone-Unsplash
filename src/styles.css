@@ -4,14 +4,55 @@
   --CL-primary-blue-light: #386bf3;
   --CL-primary-blue-dark: #f4f7fc;
   --CL-primary-blue-gray: #ebeef0;
-
-  --CL-neutral-white: #ffffff;
-  --CL-neutral-black: #000000;
-
+  --CL-neutral-white: #fff;
+  --CL-neutral-black: #000;
   --FF-poppins: 'Poppins', sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
 html,
 body {
   height: 100%;
+}
+
+body {
+  font-family: var(--FF-poppins);
+  margin: 0;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--CL-neutral-black);
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* Flex */
+.d-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
