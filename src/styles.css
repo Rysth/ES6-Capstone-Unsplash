@@ -44,3 +44,16 @@ a {
   width: min(95%, 1280px);
   margin: 0 auto;
 }
+
+/* Flex */
+.d-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
