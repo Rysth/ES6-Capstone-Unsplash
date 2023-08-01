@@ -11,18 +11,42 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon" />
+    <link
+      id="favicon"
+      rel="shortcut icon"
+      href="./assets/images/logo.png"
+      type="image/x-icon"
+    />
   <script defer src="bundle.js"></script></head>
   <body>
     <header class="header">
-      <div class="container">
-        <img src="./assets/images/logo.png" alt="Camera picture logo" />
-        <ul class="header-list">
+      <div class="header-flex container d-flex justify-between">
+        <div class="header-flex d-flex">
+          <img
+            class="header-logo"
+            id="header-logo"
+            src="./assets/images/logo.png"
+            alt="Camera picture logo"
+          />
+          <h1 class="header-title">InspireScapes</h1>
+        </div>
+        <ul class="header-list header-flex d-flex">
           <li class="header-item">
-            <a href="#" class="header-link">Images</a>
+            <a href="./index.html" class="header-link active">Home</a>
+          </li>
+          <li class="header-item">
+            <a href="./index.html" class="header-link">About</a>
+          </li>
+          <li class="header-item">
+            <a href="./index.html" class="header-link">Contact</a>
           </li>
         </ul>
       </div>
     </header>
+    <footer class="footer">
+      <div class="footer-content container">
+        <p class="footer-description">Created by John & Jimmy under MIT License</p>
+      </div>
+    </footer>
   </body>
 </html>
