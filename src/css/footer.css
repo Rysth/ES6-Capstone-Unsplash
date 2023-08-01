@@ -1,0 +1,24 @@
+.footer {
+  padding: 1em 0;
+  background-color: var(--CL-primary-blue-dark);
+  box-shadow: 0 -3px 5px var(--CL-primary-blue-dark);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.footer-description {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 2em 0;
+  }
+
+  .footer-description {
+    text-align: left;
+  }
+}
