@@ -2,6 +2,7 @@ import { getImageByID } from './unsplash';
 
 window.addEventListener('load', async () => {
   const modalElement = document.querySelector('#modal');
+  const mainElement = document.querySelector('#main');
   const modalInformation = document.querySelector('#modal-information');
   const imageData = await getImageByID(4);
 
@@ -22,9 +23,9 @@ window.addEventListener('load', async () => {
           </li>
           <li class="modal-item"><span class="fw-bold">Author:</span> ${imageData.author}</li>
           <li class="modal-item active">
-            <a href="${imageData.url}" id="page">
+            <a href="${imageData.download_url}" id="page" target="_blank">
               <span class="fw-bold">Page:</span> 
-              Credits
+              Download
             </a>
           </li>
         </ul>

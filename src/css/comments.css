@@ -1,10 +1,10 @@
 .modal {
   border-radius: 1rem;
-  box-shadow: 0 0 5px 5px var(--CL-primary-blue-gray);
+  background-color: var(--CL-neutral-white);
+  width: 95%;
   max-width: 500px;
-  margin: auto 1em;
+  margin: auto;
   padding: 1em;
-  display: none;
 }
 
 .modal-header {
@@ -37,6 +37,7 @@
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: 0 5px 5px 2px var(--CL-primary-blue-gray);
+  cursor: pointer;
 }
 
 .modal-title {
@@ -67,6 +68,20 @@
 
 .modal-item.active:hover {
   transform: translateX(1rem);
+}
+
+.modal-background {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+}
+
+.modal-background.active {
+  background-color: rgb(0, 0, 0, 0.35);
 }
 
 @media (min-width: 768px) {
