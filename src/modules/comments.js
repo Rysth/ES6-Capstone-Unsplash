@@ -1,4 +1,10 @@
-import previewImage from '../assets/images/preview.jpg';
+import { getImageByID } from './unsplash';
 
-const modalImageElement = document.querySelector('#modal-image');
-modalImageElement.src = previewImage;
+window.addEventListener('load', async () => {
+  const modalImageElement = document.querySelector('#modal-image');
+  const imageData = await getImageByID(2);
+
+  if (imageData) {
+    modalImageElement.src = imageData.download_url;
+  }
+});

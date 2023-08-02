@@ -1,7 +1,8 @@
 .modal {
+  border-radius: 1rem;
   border: 1px solid var(--CL-neutral-black);
   max-width: 500px;
-  margin: auto;
+  margin: 1em;
   padding: 1em;
 }
 
@@ -19,9 +20,8 @@
 
 .modal-image {
   border: 1px solid var(--CL-neutral-black);
-  margin: 0.5em auto 1em auto;
-  max-width: 375px;
-  height: 225px;
+  margin: 0.5em auto;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -39,6 +39,15 @@
 }
 
 @media (min-width: 768px) {
+  .modal {
+    margin: auto;
+  }
+
+  .modal-image {
+    max-width: 375px;
+    height: 225px;
+  }
+
   .modal-list {
     padding: 0 3em;
   }
