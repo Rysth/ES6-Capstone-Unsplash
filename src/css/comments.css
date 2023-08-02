@@ -2,7 +2,7 @@
   border-radius: 1rem;
   background-color: var(--CL-neutral-white);
   width: 95%;
-  max-width: 500px;
+  max-width: 450px;
   margin: auto;
   padding: 1em;
 }
@@ -37,7 +37,6 @@
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: 0 5px 5px 2px var(--CL-primary-blue-gray);
-  cursor: pointer;
 }
 
 .modal-title {
@@ -47,7 +46,7 @@
 }
 
 .modal-list {
-  padding: 0 0em 0 1.3em;
+  padding: 0 0 0 1.3em;
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -55,15 +54,12 @@
 
 .modal-item {
   font-size: 0.9rem;
+  transition: transform 0.25s;
 }
 
 .modal-item.active > * {
   font-style: italic;
   color: var(--CL-primary-blue-light);
-}
-
-.modal-item {
-  transition: transform 0.25s;
 }
 
 .modal-item.active:hover {
@@ -95,7 +91,7 @@
   }
 
   .modal-list {
-    padding: 0 0em 0 4em;
+    padding: 0 0 0 3.5em;
   }
 
   .modal-item {

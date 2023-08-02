@@ -1,11 +1,19 @@
 import { getImageByID } from './unsplash';
 
 window.addEventListener('load', async () => {
-  const modalElement = document.querySelector('#modal');
-  const modalInformation = document.querySelector('#modal-information');
   const imageData = await getImageByID(4);
 
   if (imageData) {
+    const modalElement = document.querySelector('#modal');
+    const modalBackground = document.querySelector('#modal-background');
+    const modalInformation = document.querySelector('#modal-information');
+    const modalClose = document.querySelector('#modal-close');
+
+    modalClose.addEventListener('click', () => {
+      modalBackground.style.display = 'none';
+      modalInformation.innerHTML = '';
+    });
+
     modalInformation.innerHTML = `
        <img
           loading="lazy"
@@ -29,7 +37,6 @@ window.addEventListener('load', async () => {
           </li>
         </ul>
     `;
-
     modalElement.style.display = 'block';
   }
 });
