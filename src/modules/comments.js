@@ -21,9 +21,11 @@ window.addEventListener('load', async () => {
             <span class="fw-bold">Height:</span> ${imageData.height}px
           </li>
           <li class="modal-item"><span class="fw-bold">Author:</span> ${imageData.author}</li>
-          <li class="modal-item">
-            <span class="fw-bold">Page:</span> 
-            <a href="${imageData.url}" id="page">Credits</a>
+          <li class="modal-item active">
+            <a href="${imageData.url}" id="page">
+              <span class="fw-bold">Page:</span> 
+              Credits
+            </a>
           </li>
         </ul>
     `;
