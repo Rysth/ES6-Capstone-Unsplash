@@ -2,10 +2,7 @@
   padding: 1em 0;
   background-color: var(--CL-primary-blue-dark);
   box-shadow: 0 -3px 5px var(--CL-primary-blue-dark);
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin: auto 0 0 0;
 }
 
 .footer-description {
