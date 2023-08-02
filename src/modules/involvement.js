@@ -13,6 +13,19 @@ const getAppID = async () => {
   return 'Nothing found';
 };
 
+const getComments = async (ID, itemID) => {
+  const response = await fetch(`${API}/apps/${ID}/comments?item_id=${itemID}`, {
+    method: 'GET',
+  });
+
+  const data = await response.json();
+
+  if (data) return data;
+
+  return 'Nothing found';
+};
+
 module.exports = {
   getAppID,
+  getComments,
 };

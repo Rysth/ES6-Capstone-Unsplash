@@ -1,4 +1,5 @@
 import { getImageByID } from './unsplash';
+import { getAppID, getComments } from './involvement';
 
 window.addEventListener('load', async () => {
   const imageData = await getImageByID(4);
