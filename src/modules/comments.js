@@ -2,7 +2,6 @@ import { getImageByID } from './unsplash';
 
 window.addEventListener('load', async () => {
   const modalElement = document.querySelector('#modal');
-  const mainElement = document.querySelector('#main');
   const modalInformation = document.querySelector('#modal-information');
   const imageData = await getImageByID(4);
 
