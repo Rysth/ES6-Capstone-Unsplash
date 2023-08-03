@@ -7,3 +7,4 @@ import './css/footer.css';
 /* PopUp Window */
 import './css/comments.css';
 import './modules/comments';
+import './css/home.css'
