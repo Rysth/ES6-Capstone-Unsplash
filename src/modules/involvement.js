@@ -5,12 +5,7 @@ const getAppID = async () => {
     method: 'POST',
     body: {},
   });
-
-  const data = await response.text();
-
-  if (data) return data;
-
-  return 'Nothing found';
+  return response.text();
 };
 
 const getComments = async (APPID, itemID = '') => {
@@ -22,33 +17,25 @@ const getComments = async (APPID, itemID = '') => {
     return [];
   }
 
-  const data = await response.json();
-
-  if (data) return data;
-
-  return 'Nothing found';
+  return response.json();
 };
 
-const setComment = async (APPID, itemID, username, comment) => {
+const setComment = async (APPID, ID, username, comment) => {
   const itemObject = {
-    item_id: itemID,
-    username: username,
-    comment: comment,
+    item_id: ID, // eslint-disable-line no-console
+    username,
+    comment,
   };
 
   const response = await fetch(`${API}/apps/${APPID}/comments`, {
     method: 'POST',
     body: JSON.stringify(itemObject),
     headers: {
-      'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+      'Content-Type': 'application/json',
     },
   });
 
-  const data = await response.text();
-
-  if (data) return data;
-
-  return 'Nothing found';
+  return response.text();
 };
 
 module.exports = {

@@ -13,9 +13,22 @@ const loadApp = async () => {
   return item;
 };
 
+// Global Const
 const APPID = await loadApp();
-const cards = await getImages();
-const cardsCon = document.querySelector('.cards');
+
+// Functionality to get all the Comments related to an specific Item (Card)
+const loadComments = async (itemID) => {
+  const commentData = await getComments(APPID, itemID);
+
+  const modalComments = document.querySelector('#modal-comments');
+  modalComments.innerHTML = commentData
+    .map(
+      (comment) => `
+      <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment}</li>
+    `,
+    )
+    .join('');
+};
 
 const formElement = document.querySelector('#comment-form');
 formElement.addEventListener('submit', async (event) => {
@@ -30,20 +43,8 @@ formElement.addEventListener('submit', async (event) => {
   formElement.reset();
 });
 
-// Functionality to get all the Comments related to an specific Item (Card)
-const loadComments = async (itemID) => {
-  const commentData = await getComments(APPID, itemID);
-  if (commentData.length > 0) {
-    const modalComments = document.querySelector('#modal-comments');
-    modalComments.innerHTML = commentData
-      .map(
-        (comment) => `
-     <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment} </li>
-    `
-      )
-      .join('');
-  }
-};
+const cards = await getImages();
+const cardsCon = document.querySelector('.cards');
 
 const displayModal = async (cardID) => {
   // Get the Image Information (Details)
@@ -52,42 +53,43 @@ const displayModal = async (cardID) => {
   const modalElement = document.querySelector('#modal');
   const modalBackground = document.querySelector('#modal-background');
   const modalInformation = document.querySelector('#modal-information');
+  const modalComments = document.querySelector('#modal-comments');
   const modalClose = document.querySelector('#modal-close');
+  const pageLink = imageData.download_url;
 
   // Functionality to close the Modal Window
   modalClose.addEventListener('click', () => {
-    document.querySelector('body').setAttribute('overflow', 'auto');
+    document.body.style.overflow = 'auto';
     modalBackground.classList.remove('active');
     modalInformation.innerHTML = '';
-    document.body.style.overflow = 'auto';
+    modalComments.innerHTML = '';
   });
 
   // Display the Information (Details)
   modalInformation.innerHTML = `
-       <img
-          loading="lazy"
-          id="modal-image"
-          src="${imageData.download_url}"
-          alt="Preview Image - ${imageData.author}"
-          class="modal-image"
-        />
-        <p class="modal-title">${imageData.author}</p>
-        <ul class="modal-list">
-        <li class="modal-item"><span class="fw-bold">ID:</span> ${imageData.id}</li>
-          <li class="modal-item active">
-            <a href="${imageData.download_url}" id="page" target="_blank">
-              <span class="fw-bold">Page:</span> 
-              Download
-            </a>
-          </li>
-          <li class="modal-item"><span class="fw-bold">Width:</span> ${imageData.width}px</li>
-          <li class="modal-item">
-            <span class="fw-bold">Height:</span> ${imageData.height}px
-          </li>
-        </ul>
-    `;
+    <img
+      loading="lazy"
+      id="modal-image"
+      src="${pageLink}"
+      alt="Preview Image - ${imageData.author}"
+      class="modal-image"
+    />
+    <p class="modal-title">${imageData.author}</p>
+    <ul class="modal-list">
+      <li class="modal-item"><span class="fw-bold">ID:</span> ${imageData.id}</li>
+      <li class="modal-item active">
+        <a href="${pageLink}" id="page" target="_blank">
+          <span class="fw-bold">Page:</span> Download
+        </a>
+      </li>
+      <li class="modal-item"><span class="fw-bold">Width:</span> ${imageData.width}px</li>
+      <li class="modal-item">
+        <span class="fw-bold">Height:</span> ${imageData.height}px
+      </li>
+    </ul>
+  `;
 
-  // Function to get the Comments from an specific Item (Card)
+  // Function to get the Comments from a specific Item (Card)
   await loadComments(cardID);
   formElement.setAttribute('data-item', cardID);
 
