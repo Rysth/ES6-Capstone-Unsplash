@@ -11,9 +11,9 @@
 
 .card {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   margin: 20px;
-  background-color: antiquewhite;
+  background-color: var(--CL-primary-blue-dark);
   padding: 30px;
   border-radius: 8px;
 }
@@ -21,6 +21,8 @@
 .card-img {
   height: 200px;
   width: 300px;
+  object-fit: cover;
+  border-radius: 0.5rem;
 }
 
 .small-cont {
@@ -29,8 +31,8 @@
   padding-top: 20px;
 }
 
-h3 {
-  width: 100px;
+.h3 {
+  font-size: 0.95rem;
 }
 
 .buttons {
@@ -41,11 +43,29 @@ h3 {
 
 .card-btn {
   margin: 10px;
-  padding: 8px;
+  padding: 12px 8px;
   width: 200px;
   border-radius: 4px;
-  background-color: tomato;
   color: antiquewhite;
+  background-color: var(--CL-primary-blue-light);
   font-size: large;
   font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s;
+}
+
+.card-btn:hover {
+  background-color: var(--CL-neutral-black);
+}
+
+.likes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.likes-count {
+  margin: 0;
 }

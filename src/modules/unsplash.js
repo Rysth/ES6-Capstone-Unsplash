@@ -1,7 +1,11 @@
 const API = 'https://picsum.photos';
 
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+};
+
 const getImages = async () => {
-  const response = await fetch(`${API}/v2/list?page=2&limit=6`, {
+  const response = await fetch(`${API}/v2/list?page=${getRandomInt(20)}&limit=9`, {
     method: 'GET',
   });
 
@@ -28,4 +32,5 @@ const getImageByID = async (imageID) => {
 
 module.exports = {
   getImageByID,
+  getImages,
 };

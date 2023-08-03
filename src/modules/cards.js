@@ -1,23 +1,6 @@
-const cards = [
-  {
-    title: 'title 1'
-  },
-  {
-    title: 'title 2'
-  },
-  {
-    title: 'title 3'
-  },
-  {
-    title: 'title 4'
-  },
-  {
-    title: 'title 5'
-  },
-  {
-    title: 'title 6'
-  },
-];
+import { getImages, getImageByID } from './unsplash';
+
+const cards = await getImages();
 
 const cardsCon = document.querySelector('.cards');
 
@@ -30,6 +13,7 @@ cards.forEach((card) => {
   const img = document.createElement('img');
   cardElement.appendChild(img);
   img.classList.add('card-img');
+  img.setAttribute('src', card.download_url);
   img.getAttribute('id', 'card-img');
 
   const smallCont = document.createElement('div');
@@ -39,7 +23,8 @@ cards.forEach((card) => {
 
   const h3 = document.createElement('h3');
   smallCont.appendChild(h3);
-  h3.innerHTML = card.title;
+  h3.classList.add('h3');
+  h3.innerHTML = card.author;
 
   const likes = document.createElement('div');
   smallCont.appendChild(likes);
@@ -48,14 +33,13 @@ cards.forEach((card) => {
 
   const icon = document.createElement('i');
   likes.appendChild(icon);
-  icon.classList.add('icon');
-  icon.innerHTML = '()'
+  icon.classList.add('fa-solid', 'fa-heart');
 
   const likesCount = document.createElement('p');
   likes.appendChild(likesCount);
   likesCount.classList.add('likes-count');
   likesCount.getAttribute('id', 'likes-count');
-  likesCount.innerHTML = '5 likes'
+  likesCount.innerHTML = '5 likes';
 
   const btns = document.createElement('div');
   cardElement.appendChild(btns);
