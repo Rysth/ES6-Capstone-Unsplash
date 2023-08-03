@@ -1,12 +1,57 @@
-import { getImages } from './unsplash';
+import { getImages, getImageByID } from './unsplash';
 
 const cards = await getImages();
-
 const cardsCon = document.querySelector('.cards');
+
+const displayModal = async (cardID) => {
+  const imageData = await getImageByID(cardID);
+
+  const modalElement = document.querySelector('#modal');
+  const modalBackground = document.querySelector('#modal-background');
+  const modalInformation = document.querySelector('#modal-information');
+  const modalClose = document.querySelector('#modal-close');
+
+  modalClose.addEventListener('click', () => {
+    modalBackground.classList.remove('active');
+    modalInformation.innerHTML = '';
+  });
+
+  modalBackground.addEventListener('click', () => {
+    modalBackground.classList.remove('active');
+    modalInformation.innerHTML = '';
+  });
+
+  modalInformation.innerHTML = `
+       <img
+          loading="lazy"
+          id="modal-image"
+          src="${imageData.download_url}"
+          alt="Preview Image - ${imageData.author}"
+          class="modal-image"
+        />
+        <p class="modal-title">${imageData.author}</p>
+        <ul class="modal-list">
+          <li class="modal-item"><span class="fw-bold">Width:</span> ${imageData.width}px</li>
+          <li class="modal-item">
+            <span class="fw-bold">Height:</span> ${imageData.height}px
+          </li>
+          <li class="modal-item"><span class="fw-bold">ID:</span> ${imageData.id}</li>
+          <li class="modal-item active">
+            <a href="${imageData.download_url}" id="page" target="_blank">
+              <span class="fw-bold">Page:</span> 
+              Download
+            </a>
+          </li>
+        </ul>
+    `;
+  modalElement.style.display = 'block';
+  modalBackground.classList.add('active');
+};
 
 cards.forEach((card) => {
   const cardElement = document.createElement('div');
   cardsCon.appendChild(cardElement);
+  cardElement.setAttribute('id', card.id);
   cardElement.classList.add('card');
   cardElement.getAttribute('id', 'card');
 
@@ -51,6 +96,9 @@ cards.forEach((card) => {
   commentBtn.classList.add('card-btn');
   commentBtn.getAttribute('id', 'comment');
   commentBtn.innerHTML = 'Comments';
+  commentBtn.addEventListener('click', () => {
+    displayModal(cardElement.id);
+  });
 
   const reserveBtn = document.createElement('button');
   btns.appendChild(reserveBtn);
