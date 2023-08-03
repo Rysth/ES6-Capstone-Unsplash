@@ -50,4 +50,10 @@ cards.forEach((card) => {
   likes.appendChild(icon);
   icon.classList.add('icon');
   icon.innerHTML = '()'
+
+  const likesCount = document.createElement('p');
+  likes.appendChild(likesCount);
+  likesCount.classList.add('likes-count');
+  likesCount.getAttribute('id', 'likes-count');
+  likesCount.innerHTML = '5 likes'
 });
