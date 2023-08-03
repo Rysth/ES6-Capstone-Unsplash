@@ -1,3 +1,18 @@
+.modal-background {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: none;
+  place-items: center;
+}
+
+.modal-background.active {
+  display: grid;
+  background-color: rgb(0, 0, 0, 0.35);
+}
+
 .modal {
   border-radius: 1rem;
   background-color: var(--CL-neutral-white);
@@ -65,45 +80,6 @@
 .modal-item.active:hover {
   transform: translateX(1rem);
 }
-
-.modal-background {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: grid;
-  place-items: center;
-}
-
-.modal-background.active {
-  background-color: rgb(0, 0, 0, 0.35);
-}
-
-.modal-section.comments {
-}
-
-.modal-text {
-  text-align: center;
-  font-weight: bold;
-}
-
-.modal-comments {
-  list-style-type: none;
-  padding: 0;
-  max-height: 10rem;
-  overflow: auto;
-}
-
-.modal-comment {
-  max-width: 80%;
-  margin: 0 auto;
-  border: 1px solid var(--CL-primary-blue-gray);
-  padding: 0.5em;
-  font-size: 0.85rem;
-}
-
-/* Work in the API */
 
 @media (min-width: 768px) {
   .modal {
