@@ -1,5 +1,6 @@
 import { getImages, getImageByID } from './unsplash';
 import { getAppID, getComments, setComment } from './involvement';
+import { countComments } from './counters/comments';
 
 // Functionality to get or assign the Application ID
 const loadApp = async () => {
@@ -19,13 +20,13 @@ const APPID = await loadApp();
 // Functionality to get all the Comments related to an specific Item (Card)
 const loadComments = async (itemID) => {
   const commentData = await getComments(APPID, itemID);
-
+  countComments(commentData);
   const modalComments = document.querySelector('#modal-comments');
   modalComments.innerHTML = commentData
     .map(
       (comment) => `
       <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment}</li>
-    `
+    `,
     )
     .join('');
 };
