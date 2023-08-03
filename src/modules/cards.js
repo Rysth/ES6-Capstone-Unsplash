@@ -19,7 +19,9 @@ const APPID = await loadApp();
 // Functionality to get all the Comments related to an specific Item (Card)
 const loadComments = async (itemID) => {
   const commentData = await getComments(APPID, itemID);
-
+  const commentCounter = commentData.length;
+  const textComment = document.querySelector('#text-comment');
+  textComment.innerHTML = `Comments(${commentCounter})`;
   const modalComments = document.querySelector('#modal-comments');
   modalComments.innerHTML = commentData
     .map(
