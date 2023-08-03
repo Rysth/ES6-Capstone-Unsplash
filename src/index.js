@@ -1,4 +1,7 @@
 import './styles.css';
+/* Home Page */
+import './css/home.css';
+import './modules/cards';
 /* Header CSS & JS */
 import './css/header.css';
 import './modules/header';
@@ -7,5 +10,3 @@ import './css/footer.css';
 /* PopUp Window */
 import './css/comments.css';
 import './modules/comments';
-import './css/home.css';
-import './modules/cards';

@@ -15,7 +15,7 @@ const getImages = async () => {
 };
 
 const getImageByID = async (imageID) => {
-  const response = await fetch(`${API}/seed/${imageID}/info`, {
+  const response = await fetch(`${API}/id/${imageID}/info`, {
     method: 'GET',
   });
 
