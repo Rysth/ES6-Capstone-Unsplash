@@ -1,4 +1,4 @@
-import { getImages, getImageByID } from './unsplash';
+import { getImages } from './unsplash';
 
 const cards = await getImages();
 

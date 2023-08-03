@@ -1,8 +1,6 @@
 const API = 'https://picsum.photos';
 
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * max);
-};
+const getRandomInt = (max) => Math.floor(Math.random() * max);
 
 const getImages = async () => {
   const response = await fetch(`${API}/v2/list?page=${getRandomInt(20)}&limit=9`, {

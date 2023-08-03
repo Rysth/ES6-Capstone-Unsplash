@@ -10,6 +10,7 @@
 
 .modal-background.active {
   display: grid;
+  background-color: rgb(0, 0, 0, 0.35);
 }
 
 .modal {
@@ -78,10 +79,6 @@
 
 .modal-item.active:hover {
   transform: translateX(1rem);
-}
-
-.modal-background.active {
-  background-color: rgb(0, 0, 0, 0.35);
 }
 
 @media (min-width: 768px) {

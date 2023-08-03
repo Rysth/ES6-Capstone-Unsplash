@@ -8,4 +8,4 @@ import './css/footer.css';
 import './css/comments.css';
 import './modules/comments';
 import './css/home.css';
-import './modules/cards'
+import './modules/cards';
