@@ -37,6 +37,13 @@ a {
   color: var(--CL-neutral-black);
 }
 
+input,
+textarea,
+label,
+button {
+  font-family: var(--FF-poppins);
+}
+
 /* main {
   height: 71.5%;
 } */

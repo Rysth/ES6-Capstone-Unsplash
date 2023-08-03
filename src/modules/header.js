@@ -1,7 +1,4 @@
 import brandURL from '../assets/images/logo.png';
 
-const logoElement = document.querySelector('#header-logo');
-logoElement.src = brandURL;
-
-const faviconElement = document.querySelector('#favicon');
-faviconElement.href = brandURL;
+document.querySelector('#header-logo').src = brandURL;
+document.querySelector('#favicon').href = brandURL;
