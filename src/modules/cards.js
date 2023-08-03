@@ -1,5 +1,5 @@
 import { getImages, getImageByID } from './unsplash';
-import { getAppID, getComments } from './involvement';
+import { getAppID, getComments, setComment } from './involvement';
 
 // Functionality to get or assign the Application ID
 const loadApp = async () => {
@@ -17,15 +17,30 @@ const APPID = await loadApp();
 const cards = await getImages();
 const cardsCon = document.querySelector('.cards');
 
+const formElement = document.querySelector('#comment-form');
+formElement.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const ID = formElement.getAttribute('data-item');
+  const name = formElement.querySelector('#name').value;
+  const comment = formElement.querySelector('#comment').value;
+
+  await setComment(APPID, ID, name, comment);
+  await loadComments(ID);
+
+  formElement.reset();
+});
+
 // Functionality to get all the Comments related to an specific Item (Card)
 const loadComments = async (itemID) => {
   const commentData = await getComments(APPID, itemID);
   if (commentData.length > 0) {
     const modalComments = document.querySelector('#modal-comments');
     modalComments.innerHTML = commentData
-      .map((comment) => `
-     <li class="modal-comment">${comment.creation_date} ${comment.username}: ${comment.comment} </li>
-    `)
+      .map(
+        (comment) => `
+     <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment} </li>
+    `
+      )
       .join('');
   }
 };
@@ -41,8 +56,10 @@ const displayModal = async (cardID) => {
 
   // Functionality to close the Modal Window
   modalClose.addEventListener('click', () => {
+    document.querySelector('body').setAttribute('overflow', 'auto');
     modalBackground.classList.remove('active');
     modalInformation.innerHTML = '';
+    document.body.style.overflow = 'auto';
   });
 
   // Display the Information (Details)
@@ -71,9 +88,11 @@ const displayModal = async (cardID) => {
     `;
 
   // Function to get the Comments from an specific Item (Card)
-  loadComments(cardID);
+  await loadComments(cardID);
+  formElement.setAttribute('data-item', cardID);
 
   // Display the Modal
+  document.body.style.overflow = 'hidden';
   modalElement.style.display = 'block';
   modalBackground.classList.add('active');
 };
