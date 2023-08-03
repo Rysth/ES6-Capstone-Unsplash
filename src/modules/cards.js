@@ -31,4 +31,23 @@ cards.forEach((card) => {
   cardElement.appendChild(img);
   img.classList.add('card-img');
   img.getAttribute('id', 'card-img');
+
+  const smallCont = document.createElement('div');
+  cardElement.appendChild(smallCont);
+  smallCont.classList.add('small-cont');
+  smallCont.getAttribute('id', 'small-cont');
+
+  const h3 = document.createElement('h3');
+  smallCont.appendChild(h3);
+  h3.innerHTML = card.title;
+
+  const likes = document.createElement('div');
+  smallCont.appendChild(likes);
+  likes.classList.add('likes');
+  likes.getAttribute('id', 'likes');
+
+  const icon = document.createElement('i');
+  likes.appendChild(icon);
+  icon.classList.add('icon');
+  icon.innerHTML = '()'
 });
