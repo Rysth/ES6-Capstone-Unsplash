@@ -61,4 +61,16 @@ cards.forEach((card) => {
   cardElement.appendChild(btns);
   btns.classList.add('buttons');
   smallCont.getAttribute('id', 'buttons');
+
+  const commentBtn = document.createElement('button');
+  btns.appendChild(commentBtn);
+  commentBtn.classList.add('card-btn');
+  commentBtn.getAttribute('id', 'comment');
+  commentBtn.innerHTML = 'Comments';
+
+  const reserveBtn = document.createElement('button');
+  btns.appendChild(reserveBtn);
+  reserveBtn.classList.add('card-btn');
+  reserveBtn.getAttribute('id', 'reservation');
+  reserveBtn.innerHTML = 'Reservations';
 });
