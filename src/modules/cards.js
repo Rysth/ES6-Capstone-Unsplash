@@ -56,4 +56,9 @@ cards.forEach((card) => {
   likesCount.classList.add('likes-count');
   likesCount.getAttribute('id', 'likes-count');
   likesCount.innerHTML = '5 likes'
+
+  const btns = document.createElement('div');
+  cardElement.appendChild(btns);
+  btns.classList.add('buttons');
+  smallCont.getAttribute('id', 'buttons');
 });
