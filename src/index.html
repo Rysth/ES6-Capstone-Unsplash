@@ -57,7 +57,32 @@
             <div class="modal-information" id="modal-information"></div>
             <div class="modal-section comments">
               <p class="modal-text">Comments (2)</p>
-              <ul class="modal-comments"></ul>
+              <ul class="modal-comments">
+                <li class="modal-comment">${comment.creation_date}</li>
+              </ul>
+              <p class="modal-text">Add Comment</p>
+              <form action="#" class="modal-form">
+                <div class="form-group">
+                  <label class="form-label" for="name" aria-hidden="true"
+                    >Name</label
+                  >
+                  <input class="form-input" type="text" name="name" id="name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="comment" aria-hidden="true"
+                    >Comments</label
+                  >
+                  <textarea
+                    class="form-input form-textarea"
+                    name="comment"
+                    id="comment"
+                    rows="5"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="form-button">Comment</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
