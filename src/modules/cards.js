@@ -1,9 +1,39 @@
 import { getImages, getImageByID } from './unsplash';
+import { getAppID, getComments } from './involvement';
 
+//Functionality to get or assign the Application ID
+const loadApp = async () => {
+  const application = await getAppID();
+  const item = localStorage.getItem('APPID');
+  if (!item) {
+    localStorage.setItem('APPID', application);
+    return application;
+  }
+
+  return item;
+};
+
+const APPID = await loadApp();
 const cards = await getImages();
 const cardsCon = document.querySelector('.cards');
 
+//Functionality to get all the Comments related to an specific Item (Card)
+const loadComments = async (itemID) => {
+  const commentData = await getComments(APPID, itemID);
+  if (commentData.length > 0) {
+    const modalComments = document.querySelector('#modal-comments');
+    modalComments.innerHTML = commentData
+      .map((comment) => {
+        `
+     <li class="modal-comment">${comment.creation_date} ${comment.username}: ${comment.comment} </li>
+    `;
+      })
+      .join('');
+  }
+};
+
 const displayModal = async (cardID) => {
+  //Get the Image Information (Details)
   const imageData = await getImageByID(cardID);
 
   const modalElement = document.querySelector('#modal');
@@ -11,16 +41,13 @@ const displayModal = async (cardID) => {
   const modalInformation = document.querySelector('#modal-information');
   const modalClose = document.querySelector('#modal-close');
 
+  //Functionality to close the Modal Window
   modalClose.addEventListener('click', () => {
     modalBackground.classList.remove('active');
     modalInformation.innerHTML = '';
   });
 
-  modalBackground.addEventListener('click', () => {
-    modalBackground.classList.remove('active');
-    modalInformation.innerHTML = '';
-  });
-
+  //Display the Information (Details)
   modalInformation.innerHTML = `
        <img
           loading="lazy"
@@ -31,19 +58,24 @@ const displayModal = async (cardID) => {
         />
         <p class="modal-title">${imageData.author}</p>
         <ul class="modal-list">
-          <li class="modal-item"><span class="fw-bold">Width:</span> ${imageData.width}px</li>
-          <li class="modal-item">
-            <span class="fw-bold">Height:</span> ${imageData.height}px
-          </li>
-          <li class="modal-item"><span class="fw-bold">ID:</span> ${imageData.id}</li>
+        <li class="modal-item"><span class="fw-bold">ID:</span> ${imageData.id}</li>
           <li class="modal-item active">
             <a href="${imageData.download_url}" id="page" target="_blank">
               <span class="fw-bold">Page:</span> 
               Download
             </a>
           </li>
+          <li class="modal-item"><span class="fw-bold">Width:</span> ${imageData.width}px</li>
+          <li class="modal-item">
+            <span class="fw-bold">Height:</span> ${imageData.height}px
+          </li>
         </ul>
     `;
+
+  //Function to get the Comments from an specific Item (Card)
+  loadComments(cardID);
+
+  //Display the Modal
   modalElement.style.display = 'block';
   modalBackground.classList.add('active');
 };

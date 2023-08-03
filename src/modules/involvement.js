@@ -13,8 +13,8 @@ const getAppID = async () => {
   return 'Nothing found';
 };
 
-const getComments = async (ID, itemID) => {
-  const response = await fetch(`${API}/apps/${ID}/comments?item_id=${itemID}`, {
+const getComments = async (APPID, itemID) => {
+  const response = await fetch(`${API}/apps/${APPID}/comments?item_id=${itemID}`, {
     method: 'GET',
   });
 
