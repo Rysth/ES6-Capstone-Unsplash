@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js"
   },
@@ -20,6 +20,8 @@
     "hint": "^2.0.0",
     "html-webpack-plugin": "^5.5.3",
     "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
+    "jsdom": "^22.1.0",
     "style-loader": "^3.3.3",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
