@@ -8,7 +8,7 @@ const getRandomInt = (max) => Math.floor(Math.random() * max);
 const getImages = async () => {
   try {
     const response = await fetch(
-      `${API}/v2/list?page=${getRandomInt(5)}&limit=${getRandomInt(10)}`
+      `${API}/v2/list?page=${getRandomInt(5)}&limit=${getRandomInt(10)}`,
     );
     if (!response.ok) {
       throw new Error('Failed to fetch images.');
