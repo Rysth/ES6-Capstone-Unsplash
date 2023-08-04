@@ -8,6 +8,7 @@ import {
   setLikes,
 } from './involvement';
 import { countComments } from './counters/comments';
+import { countCards } from './counters/cards';
 
 // Function to get or assign the Application ID
 const loadApp = async () => {
@@ -174,6 +175,7 @@ const loadLikes = async () => getLikes(APPID);
 // Function to display the number of likes for each card
 const displayLikes = async () => {
   const cardsArray = Array.from(document.querySelectorAll('.card'));
+  countCards(cardsArray);
   const likesArray = await loadLikes(); // Load likes only once
   cardsArray.forEach((card) => {
     const likesObject = likesArray.find((element) => element.item_id === card.id);
