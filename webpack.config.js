@@ -14,6 +14,10 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        type: 'asset',
+        test: /\.(png|jpe?g|gif|svg)$/i,
+      },
     ],
   },
   plugins: [
@@ -24,6 +28,6 @@ module.exports = {
   devServer: {
     static: path.join(__dirname, 'dist'),
     compress: true,
-    port: 8080,
+    port: 3000,
   },
 };
