@@ -1,5 +1,12 @@
 // Import statements
 import { getImages, getImageByID } from './unsplash';
+import {
+  getAppID,
+  getComments,
+  setComment,
+  getLikes,
+  setLikes,
+} from './involvement';
 import { getAppID, getComments, setComment, getLikes } from './involvement';
 import { countComments } from './counters/comments';
 import { countCards } from './counters/cards';
@@ -132,15 +139,15 @@ cards.forEach((card) => {
   likes.classList.add('likes');
   likes.getAttribute('id', 'likes');
 
-  /* const icon = document.createElement('i');
+  const icon = document.createElement('i');
   likes.appendChild(icon);
-  icon.classList.add('fa-solid', 'fa-heart'); */
+  icon.classList.add('fa-solid', 'fa-heart');
 
   const likesCount = document.createElement('p');
   likes.appendChild(likesCount);
   likesCount.classList.add('likes-count');
   likesCount.getAttribute('id', 'likes-count');
-  likesCount.innerHTML = '1';
+  likesCount.innerHTML = '0';
 
   const btns = document.createElement('div');
   cardElement.appendChild(btns);
@@ -177,6 +184,21 @@ const displayLikes = async () => {
       const likesCount = card.querySelector('.likes-count');
       likesCount.innerHTML = `${likesObject.likes}`;
     }
+    // Add event listener to the like button for each card
+    const likeBtn = card.querySelector('.fa-heart');
+    likeBtn.addEventListener('click', async () => {
+      // Call setLikes when the user clicks the like button
+      await setLikes(APPID, card.id);
+      // Update the likes count after setting likes
+      const newLikesArray = await loadLikes();
+      const newLikesObject = newLikesArray.find(
+        (element) => element.item_id === card.id
+      );
+      if (newLikesObject) {
+        const likesCount = card.querySelector('.likes-count');
+        likesCount.innerHTML = `${newLikesObject.likes}`;
+      }
+    });
   });
 };
 
