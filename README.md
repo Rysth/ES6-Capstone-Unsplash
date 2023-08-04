@@ -56,6 +56,9 @@
 
 ### Take a Look
 
+![image](https://github.com/Rysth/ES6-Capstone-Unsplash/assets/115722896/67b176a3-5771-40d5-910f-b3c283655bad)
+
+
 - [Live Demo Link](https://rysth.github.io/ES6-Capstone-Unsplash/dist)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
