@@ -1,9 +1,8 @@
 // Import statements
 import { getImages, getImageByID } from './unsplash';
-import {
-  getAppID, getComments, setComment, getLikes,
-} from './involvement';
+import { getAppID, getComments, setComment, getLikes } from './involvement';
 import { countComments } from './counters/comments';
+import { countCards } from './counters/cards';
 
 // Function to get or assign the Application ID
 const loadApp = async () => {
@@ -28,7 +27,7 @@ const loadComments = async (itemID) => {
     .map(
       (comment) => `
       <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment}</li>
-    `,
+    `
     )
     .join('');
 };
@@ -170,6 +169,7 @@ const loadLikes = async () => getLikes(APPID);
 // Function to display the number of likes for each card
 const displayLikes = async () => {
   const cardsArray = Array.from(document.querySelectorAll('.card'));
+  countCards(cardsArray);
   const likesArray = await loadLikes(); // Load likes only once
   cardsArray.forEach((card) => {
     const likesObject = likesArray.find((element) => element.item_id === card.id);
