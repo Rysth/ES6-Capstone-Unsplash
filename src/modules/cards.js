@@ -1,8 +1,11 @@
+// Import statements
 import { getImages, getImageByID } from './unsplash';
-import { getAppID, getComments, setComment } from './involvement';
+import {
+  getAppID, getComments, setComment, getLikes,
+} from './involvement';
 import { countComments } from './counters/comments';
 
-// Functionality to get or assign the Application ID
+// Function to get or assign the Application ID
 const loadApp = async () => {
   const application = await getAppID();
   const item = localStorage.getItem('APPID');
@@ -10,14 +13,13 @@ const loadApp = async () => {
     localStorage.setItem('APPID', application);
     return application;
   }
-
   return item;
 };
 
-// Global Const
+// Global Const for Application ID
 const APPID = await loadApp();
 
-// Functionality to get all the Comments related to an specific Item (Card)
+// Function to load and display comments for a specific item (card)
 const loadComments = async (itemID) => {
   const commentData = await getComments(APPID, itemID);
   countComments(commentData);
@@ -31,6 +33,7 @@ const loadComments = async (itemID) => {
     .join('');
 };
 
+// Event listener for the comment form submission
 const formElement = document.querySelector('#comment-form');
 formElement.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -45,16 +48,17 @@ formElement.addEventListener('submit', async (event) => {
   }
 });
 
-const cards = await getImages();
-const cardsCon = document.querySelector('.cards');
-
+// Function to display the modal with image details and comments
 const displayModal = async (cardID) => {
   const modalElement = document.querySelector('#modal');
   const modalBackground = document.querySelector('#modal-background');
   const modalInformation = document.querySelector('#modal-information');
   const modalComments = document.querySelector('#modal-comments');
   const modalClose = document.querySelector('#modal-close');
+
   // Get the Image Information (Details)
+  const imageData = await getImageByID(cardID);
+  const pageLink = imageData.download_url;
 
   // Display the Modal
   document.body.style.overflow = 'hidden';
@@ -70,10 +74,8 @@ const displayModal = async (cardID) => {
   });
 
   // Display the Information (Details)
-  const imageData = await getImageByID(cardID);
-  const pageLink = imageData.download_url;
   modalInformation.innerHTML = `
-  <img
+    <img
       loading="lazy"
       id="modal-image"
       src="${pageLink}"
@@ -100,6 +102,9 @@ const displayModal = async (cardID) => {
   formElement.setAttribute('data-item', cardID);
 };
 
+// Get all images (cards) and display them on the page
+const cards = await getImages();
+const cardsCon = document.querySelector('.cards');
 cards.forEach((card) => {
   const cardElement = document.createElement('div');
   cardsCon.appendChild(cardElement);
@@ -128,15 +133,15 @@ cards.forEach((card) => {
   likes.classList.add('likes');
   likes.getAttribute('id', 'likes');
 
-  const icon = document.createElement('i');
+  /* const icon = document.createElement('i');
   likes.appendChild(icon);
-  icon.classList.add('fa-solid', 'fa-heart');
+  icon.classList.add('fa-solid', 'fa-heart'); */
 
   const likesCount = document.createElement('p');
   likes.appendChild(likesCount);
   likesCount.classList.add('likes-count');
   likesCount.getAttribute('id', 'likes-count');
-  likesCount.innerHTML = '5 likes';
+  likesCount.innerHTML = '1';
 
   const btns = document.createElement('div');
   cardElement.appendChild(btns);
@@ -158,3 +163,22 @@ cards.forEach((card) => {
   reserveBtn.getAttribute('id', 'reservation');
   reserveBtn.innerHTML = 'Reservations';
 });
+
+// Function to load and return likes data
+const loadLikes = async () => getLikes(APPID);
+
+// Function to display the number of likes for each card
+const displayLikes = async () => {
+  const cardsArray = Array.from(document.querySelectorAll('.card'));
+  const likesArray = await loadLikes(); // Load likes only once
+  cardsArray.forEach((card) => {
+    const likesObject = likesArray.find((element) => element.item_id === card.id);
+    if (likesObject) {
+      const likesCount = card.querySelector('.likes-count');
+      likesCount.innerHTML = `${likesObject.likes}`;
+    }
+  });
+};
+
+// Initial display of likes
+displayLikes();
