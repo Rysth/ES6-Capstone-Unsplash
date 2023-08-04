@@ -33,7 +33,7 @@ const loadComments = async (itemID) => {
     .map(
       (comment) => `
       <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment}</li>
-    `
+    `,
     )
     .join('');
 };
@@ -191,7 +191,7 @@ const displayLikes = async () => {
       // Update the likes count after setting likes
       const newLikesArray = await loadLikes();
       const newLikesObject = newLikesArray.find(
-        (element) => element.item_id === card.id
+        (element) => element.item_id === card.id,
       );
       if (newLikesObject) {
         const likesCount = card.querySelector('.likes-count');
