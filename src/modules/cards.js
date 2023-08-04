@@ -26,7 +26,7 @@ const loadComments = async (itemID) => {
     .map(
       (comment) => `
       <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment}</li>
-    `
+    `,
     )
     .join('');
 };
