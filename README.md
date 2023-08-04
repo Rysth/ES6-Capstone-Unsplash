@@ -42,6 +42,7 @@
 
 - Display a lot of different images.
 - Comment on each individual image.
+- You can like images, you really appreciate them!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
