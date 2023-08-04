@@ -26,7 +26,7 @@ const loadComments = async (itemID) => {
     .map(
       (comment) => `
       <li class="modal-comment"><span class="fw-bold">${comment.creation_date} ${comment.username}:</span> ${comment.comment}</li>
-    `,
+    `
     )
     .join('');
 };
@@ -49,15 +49,17 @@ const cards = await getImages();
 const cardsCon = document.querySelector('.cards');
 
 const displayModal = async (cardID) => {
-  // Get the Image Information (Details)
-  const imageData = await getImageByID(cardID);
-
   const modalElement = document.querySelector('#modal');
   const modalBackground = document.querySelector('#modal-background');
   const modalInformation = document.querySelector('#modal-information');
   const modalComments = document.querySelector('#modal-comments');
   const modalClose = document.querySelector('#modal-close');
-  const pageLink = imageData.download_url;
+  // Get the Image Information (Details)
+
+  // Display the Modal
+  document.body.style.overflow = 'hidden';
+  modalElement.style.display = 'block';
+  modalBackground.classList.add('active');
 
   // Functionality to close the Modal Window
   modalClose.addEventListener('click', () => {
@@ -68,8 +70,10 @@ const displayModal = async (cardID) => {
   });
 
   // Display the Information (Details)
+  const imageData = await getImageByID(cardID);
+  const pageLink = imageData.download_url;
   modalInformation.innerHTML = `
-    <img
+  <img
       loading="lazy"
       id="modal-image"
       src="${pageLink}"
@@ -94,11 +98,6 @@ const displayModal = async (cardID) => {
   // Function to get the Comments from a specific Item (Card)
   await loadComments(cardID);
   formElement.setAttribute('data-item', cardID);
-
-  // Display the Modal
-  document.body.style.overflow = 'hidden';
-  modalElement.style.display = 'block';
-  modalBackground.classList.add('active');
 };
 
 cards.forEach((card) => {

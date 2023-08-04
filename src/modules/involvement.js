@@ -9,15 +9,17 @@ const getAppID = async () => {
 };
 
 const getComments = async (APPID, itemID = '') => {
-  const response = await fetch(`${API}/apps/${APPID}/comments?item_id=${itemID}`, {
-    method: 'GET',
-  });
+  try {
+    const response = await fetch(`${API}/apps/${APPID}/comments?item_id=${itemID}`, {
+      method: 'GET',
+    });
 
-  if (!response.ok) {
-    return [];
-  }
-
-  return response.json();
+    if (response.ok) {
+      return response.json();
+    } else {
+      return [];
+    }
+  } catch (error) {}
 };
 
 const setComment = async (APPID, ID, username, comment) => {
